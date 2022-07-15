@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ShapesApp</string>
+    <string name="open_shapes_screen">Open Shapes Screen</string>
+    <string name="open_images_screen">Open Images Screen</string>
+    <string name="square">Square</string>
+    <string name="circle">Circle</string>
+</resources>
