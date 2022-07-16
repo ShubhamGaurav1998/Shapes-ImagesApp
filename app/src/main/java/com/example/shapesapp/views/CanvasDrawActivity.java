@@ -8,8 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.example.shapesapp.R;
 import com.example.shapesapp.models.Shape;
@@ -29,9 +29,8 @@ public class CanvasDrawActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_canvas_draw);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
         this.canvas = (CustomView) this.findViewById(R.id.canvasDrawView);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         canvasPresenter = new CanvasPresenter(canvas, this);
         setupActionButtons();
@@ -82,7 +81,11 @@ public class CanvasDrawActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_stats) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        else if (id == R.id.action_stats) {
             startStatsView();
             return true;
         }

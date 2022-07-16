@@ -14,10 +14,4 @@
         android:textSize="20sp"
         tools:text="Item name : " />
 
-    <ImageButton
-        android:id="@+id/deleteShape"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:src="@android:drawable/ic_menu_delete"/>
 </LinearLayout>

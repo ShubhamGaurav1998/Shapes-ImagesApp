@@ -3,12 +3,13 @@ package com.example.shapesapp.views;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,13 +34,12 @@ public class StatsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.stats_recycler_view);
         statsEmptyView = (TextView) findViewById(R.id.emptyView);
         statsPresenter = new StatsPresenter();
         setupStatsListView();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setupStatsListView() {
@@ -51,26 +51,17 @@ public class StatsActivity extends AppCompatActivity {
 
         myDataset = (HashMap<Shape.Type, Integer>) statsPresenter.getCountByGroup();
         statsEmptyView.setVisibility(View.GONE);
-        mAdapter = new StatsAdapter(myDataset, this, onClickDelete);
+        mAdapter = new StatsAdapter(myDataset, this);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.registerAdapterDataObserver(new RecyclerViewEmptyObserver(mRecyclerView, statsEmptyView));
     }
 
-    StatsAdapter.OnItemClicked onClickDelete = new StatsAdapter.OnItemClicked() {
-        @Override
-        public void onItemClick(int position) {
-            Shape.Type type = (Shape.Type) myDataset.keySet().toArray()[position];
-            Log.d("canvas1234", "   on item click : type " + type);
-            statsPresenter.deleteAllByShape(type);
-            Toast.makeText(StatsActivity.this, " All "+type+"s deleted. ", Toast.LENGTH_SHORT).show();
-            refreshData();
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
         }
-    };
-
-    private void refreshData() {
-        myDataset = (HashMap<Shape.Type, Integer>) statsPresenter.getCountByGroup();
-        mAdapter.setmDataSet(myDataset);
-        mAdapter.notifyDataSetChanged();
+        return super.onOptionsItemSelected(item);
     }
-
 }
