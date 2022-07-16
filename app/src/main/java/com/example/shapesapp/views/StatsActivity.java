@@ -10,11 +10,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shapesapp.R;
 import com.example.shapesapp.adapter.RecyclerViewEmptyObserver;
+import com.example.shapesapp.databinding.ActivityStatsBinding;
 import com.example.shapesapp.models.Shape;
 import com.example.shapesapp.presenter.StatsPresenter;
 
@@ -29,11 +31,12 @@ public class StatsActivity extends AppCompatActivity {
     private TextView statsEmptyView;
     StatsPresenter statsPresenter;
     private HashMap<Shape.Type, Integer> myDataset;
+    private ActivityStatsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stats);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_stats);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.stats_recycler_view);
         statsEmptyView = (TextView) findViewById(R.id.emptyView);

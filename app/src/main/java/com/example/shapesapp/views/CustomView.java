@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -96,7 +95,6 @@ public class CustomView extends View {
                 long currentTime = Calendar.getInstance().getTimeInMillis();
                 long clickDuration = currentTime - startClickTime;
                 if (clickDuration <= MIN_CLICK_DURATION && !longPressDone) {
-                    //normal click
                     if (canvasTouch != null) {
                         canvasTouch.onClickEvent(event);
                     }

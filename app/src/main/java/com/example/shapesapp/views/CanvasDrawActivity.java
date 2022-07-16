@@ -96,7 +96,6 @@ public class CanvasDrawActivity extends AppCompatActivity {
                     canvas.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     maxY = canvas.getHeight();
                     maxX = canvas.getWidth();
-                    //Reduce radius so that shape isn't left incomplete at the edge
                     canvasPresenter.setMaxX(maxX - Constants.RADIUS);
                     int bottomButtonHeight = 100;
                     canvasPresenter.setMaxY(maxY - Constants.RADIUS - bottomButtonHeight);

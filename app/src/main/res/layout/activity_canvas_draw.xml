@@ -20,6 +20,7 @@
         app:layout_anchor="@+id/btn_square"
         android:textColor="@color/white"
         android:text="@string/circle"
+        android:translationX="-20dp"
         android:background="@color/purple_500"
         app:layout_anchorGravity="bottom|left"
         app:rippleColor="@android:color/darker_gray"/>

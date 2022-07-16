@@ -7,8 +7,4 @@ class StatsPresenter {
 
     val countByGroup: Serializable
         get() = ShapesInteractor.getInstance().countByGroup
-
-    fun deleteAllByShape(shapeType: Shape.Type) {
-        ShapesInteractor.getInstance().deleteAllByShape(shapeType)
-    }
 }

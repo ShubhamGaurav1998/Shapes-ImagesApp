@@ -5,4 +5,5 @@
     <string name="square">Square</string>
     <string name="circle">Circle</string>
     <string name="undo">Undo</string>
+    <string name="no_shapes_on_the_screen_yet">No shapes on the screen yet !</string>
 </resources>

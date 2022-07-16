@@ -48,7 +48,6 @@ public class ShapesInteractor {
         });
         builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                // User cancelled the dialog
             }
         });
         AlertDialog dialog = builder.create();
@@ -67,19 +66,16 @@ public class ShapesInteractor {
     public void changeShapeOnTouch(float x, float y, int changeStatus) {
         int touchX = Math.round(x);
         int touchY = Math.round(y);
-        //   Toast.makeText(this.getContext(), " Touch at " + touchX + " y= " + touchY, Toast.LENGTH_SHORT).show();
         int oldX, oldY;
 
         LinkedList<Shape> list = getHistoryList();
         Shape newShape = null;
-        //Traverse from end so that we find the last performed action or shape first.
         for (int i = list.size() - 1; i >= 0; i--) {
             Shape oldShape = list.get(i);
             if (oldShape.isVisible()) {
                 oldX = oldShape.getxCordinate();
                 oldY = oldShape.getyCordinate();
 
-                //Find an existing shape where the user has clicked on the canvas
                 if (Constants.RADIUS >= calculateDistanceBetweenPoints(oldX, oldY, touchX, touchY)) {
                     if (changeStatus == Constants.ACTION_TRANSFORM)
                         addTransformShape(oldShape, i, oldX, oldY);
@@ -97,7 +93,6 @@ public class ShapesInteractor {
         getHistoryList().set(index, oldShape);
         Log.d(LOG_TAG, " HIDE oldShape =  " + oldShape.getType());
 
-        //transform object , rotate into available objects
         int newShapeType = (oldShape.getType().getValue() + 1) % Constants.TOTAL_SHAPES;
         Shape.Type newshapeType = Shape.Type.values()[newShapeType];
         Log.d(LOG_TAG, " newshape =  " + newshapeType);
@@ -115,9 +110,7 @@ public class ShapesInteractor {
         return Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
     }
 
-    /*
-    Generate random x,y from 0,0 to screen max width and height
-     */
+
     private int[] generateRandomXAndY() {
         int x, y;
         Random rn = new Random();
@@ -184,9 +177,7 @@ public class ShapesInteractor {
         this.historyList = historyList;
     }
 
-    /*
-   Remove all items of a shape
-    */
+
     public void deleteAllByShape(Shape.Type shapeType) {
 
         Iterator<Shape> itr = getHistoryList().iterator();
@@ -197,9 +188,7 @@ public class ShapesInteractor {
             }
         }
     }
-    /*
-    Get all items in list , grouped by shape
-     */
+
     public HashMap<Shape.Type, Integer> getCountByGroup() {
         HashMap<Shape.Type, Integer> shapeTypeCountMap = new HashMap<>();
         for (Shape shape : getHistoryList()) {

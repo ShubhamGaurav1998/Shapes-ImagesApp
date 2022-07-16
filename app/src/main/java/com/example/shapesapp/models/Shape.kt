@@ -4,13 +4,9 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.example.shapesapp.utils.Constants
 
-/**
- * Created by Mayuri Khinvasara on 01,December,2018
- */
+
 class Shape() : Parcelable {
-    /*
-     Defines centroid of shape : x,y.  Pivot about which shape has to be drawn
-     */
+
     private var xCordinate: Int = 0
     private var yCordinate: Int = 0
     var width: Int = 0

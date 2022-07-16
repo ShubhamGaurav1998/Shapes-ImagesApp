@@ -45,7 +45,6 @@ public class StatsAdapter extends RecyclerView.Adapter<StatsAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        // create a new view
         LinearLayout v = (LinearLayout) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_stats_content, parent, false);
         ViewHolder vh = new ViewHolder(v);
