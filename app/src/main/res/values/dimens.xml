@@ -2,4 +2,5 @@
 <resources>
     <dimen name="dimen_10">10dp</dimen>
     <dimen name="dimen_16">16dp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
 </resources>

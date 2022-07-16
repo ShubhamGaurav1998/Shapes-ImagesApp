@@ -65,9 +65,6 @@ public class CustomView extends View {
                     case SQUARE:
                         drawRectangle(shape.getxCordinate(), shape.getyCordinate());
                         break;
-                    case TRIANGLE:
-                        drawTriangle(shape.getxCordinate(), shape.getyCordinate(), (int) (2 * RADIUS));
-                        break;
                 }
             }
         }
@@ -132,19 +129,6 @@ public class CustomView extends View {
         drawPaint.setColor(Color.RED);
         Rect rectangle = new Rect((int) (x - (squareSideHalf * RADIUS)), (int) (y - (squareSideHalf * RADIUS)), (int) (x + (squareSideHalf * RADIUS)), (int) (y + ((squareSideHalf * RADIUS))));
         canvas.drawRect(rectangle, drawPaint);
-    }
-
-    public void drawTriangle(int x, int y, int width) {
-        drawPaint.setColor(Color.GREEN);
-        int halfWidth = width / 2;
-
-        Path path = new Path();
-        path.moveTo(x, y - halfWidth); // Top
-        path.lineTo(x - halfWidth, y + halfWidth); // Bottom left
-        path.lineTo(x + halfWidth, y + halfWidth); // Bottom right
-        path.lineTo(x, y - halfWidth); // Back to Top
-        path.close();
-        canvas.drawPath(path, drawPaint);
     }
 
     public List<Shape> getHistoryList() {

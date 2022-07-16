@@ -8,14 +8,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.example.shapesapp.R;
+import com.example.shapesapp.databinding.ActivityCanvasDrawBinding;
 import com.example.shapesapp.models.Shape;
 import com.example.shapesapp.presenter.CanvasPresenter;
 import com.example.shapesapp.utils.Constants;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class CanvasDrawActivity extends AppCompatActivity {
@@ -24,11 +24,12 @@ public class CanvasDrawActivity extends AppCompatActivity {
     CanvasPresenter canvasPresenter;
     private int maxY = 800; // average screen height
     private int maxX = 600; //average screen height
+    private ActivityCanvasDrawBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_canvas_draw);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_canvas_draw);
         this.canvas = (CustomView) this.findViewById(R.id.canvasDrawView);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -38,33 +39,21 @@ public class CanvasDrawActivity extends AppCompatActivity {
     }
 
     private void setupActionButtons() {
-        FloatingActionButton fabCircle = (FloatingActionButton) findViewById(R.id.fabCircle);
-        fabCircle.setOnClickListener(new View.OnClickListener() {
+        binding.btnCircle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 canvasPresenter.addShapeRandom(Shape.Type.CIRCLE);
             }
         });
 
-        FloatingActionButton fabRect = (FloatingActionButton) findViewById(R.id.fabRect);
-        fabRect.setOnClickListener(new View.OnClickListener() {
+        binding.btnSquare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 canvasPresenter.addShapeRandom(Shape.Type.SQUARE);
             }
         });
 
-        FloatingActionButton fabTriangle = (FloatingActionButton) findViewById(R.id.fabTriangle);
-        fabTriangle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                canvasPresenter.addShapeRandom(Shape.Type.TRIANGLE);
-            }
-        });
-
-
-        FloatingActionButton fabUndo = (FloatingActionButton) findViewById(R.id.fabUndo);
-        fabUndo.setOnClickListener(new View.OnClickListener() {
+        binding.btnUndo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 canvasPresenter.undo();

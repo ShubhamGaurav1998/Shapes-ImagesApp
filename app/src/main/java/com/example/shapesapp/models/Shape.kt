@@ -38,7 +38,7 @@ class Shape() : Parcelable {
     Define all types of shapes
      */
     enum class Type private constructor(val value: Int) {
-        CIRCLE(0), SQUARE(1), TRIANGLE(2)
+        CIRCLE(0), SQUARE(1)
     }
 
     fun getxCordinate(): Int {

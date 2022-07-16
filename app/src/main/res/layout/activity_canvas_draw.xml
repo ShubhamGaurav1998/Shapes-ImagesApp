@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,56 +11,39 @@
         android:id="@+id/include"
         layout="@layout/content_canvas_draw" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabCircle"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginEnd="30dp"
-        app:layout_anchor="@+id/fabRect"
+        app:layout_anchor="@+id/btn_square"
+        android:textColor="@color/white"
+        android:text="@string/circle"
+        android:background="@color/purple_500"
         app:layout_anchorGravity="bottom|left"
-        app:rippleColor="@android:color/darker_gray"
-        app:srcCompat="@drawable/circle" />
+        app:rippleColor="@android:color/darker_gray"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabRect"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_square"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/dimen_16"
-        app:srcCompat="@drawable/rectangle" />
+        android:text="@string/square"
+        android:textColor="@color/white"
+        android:background="@color/purple_500"
+        android:layout_margin="@dimen/dimen_16" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabTriangle"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_undo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_anchor="@+id/fabCircle"
-        app:layout_anchorGravity="bottom|left"
-        android:layout_gravity="start"
-        android:layout_marginEnd="30dp"
-        app:rippleColor="@android:color/darker_gray"
+        android:text="@string/undo"
+        android:textColor="@color/white"
         android:layout_margin="@dimen/dimen_16"
-        android:tooltipText="Circle"
-        app:srcCompat="@drawable/triangle" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabUndo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_16"
-        android:tooltipText="Circle"
+        android:background="@color/purple_500"
         android:layout_gravity="bottom|center_vertical"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="6dp"
-        android:text="Undo"
-        android:textColor="#fff"
-        android:textSize="16dp"
-        app:layout_anchor="@id/fabUndo"
-        app:layout_anchorGravity="center" />
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
