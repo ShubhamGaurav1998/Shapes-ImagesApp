@@ -1,4 +1,4 @@
-package com.example.shapesapp.activities
+package com.example.shapesapp.views
 
 import android.content.Intent
 import android.os.Bundle
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.openShapesButton.setOnClickListener {
-            val intent = Intent(this,ShapesActivity::class.java)
+            val intent = Intent(this,CanvasDrawActivity::class.java)
             startActivity(intent)
         }
         binding.openImagesButton . setOnClickListener {

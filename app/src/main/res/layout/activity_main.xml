@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/dimen_10"
-    tools:context=".activities.MainActivity">
+    tools:context=".views.MainActivity">
 
     <Button
         android:id="@+id/open_shapes_button"

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/dimen_10"
-    tools:context=".activities.ShapesActivity">
+    tools:context=".views.ShapesActivity">
 
     <Button
         android:id="@+id/btn_square"

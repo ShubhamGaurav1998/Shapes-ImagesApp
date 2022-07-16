@@ -1,20 +1,16 @@
-package com.example.shapesapp.activities
+package com.example.shapesapp.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import androidx.databinding.DataBindingUtil
 import com.example.shapesapp.R
-import com.example.shapesapp.databinding.ActivityMainBinding
-import com.example.shapesapp.databinding.ActivityShapesBinding
+import com.example.shapesapp.databinding.ActivityImagesBinding
 
-class ShapesActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityShapesBinding
-
+class ImagesActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityImagesBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_shapes)
+        setContentView(R.layout.activity_images)
 
         if (supportActionBar != null) {
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)

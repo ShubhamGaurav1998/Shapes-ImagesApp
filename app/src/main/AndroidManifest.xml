@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShapesApp">
         <activity
-            android:name=".activities.ImagesActivity"
+            android:name=".views.ImagesActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ShapesActivity"
+            android:name=".views.CanvasDrawActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+        android:name=".views.StatsActivity"
+        android:exported="false" />
+        <activity
+            android:name=".views.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
