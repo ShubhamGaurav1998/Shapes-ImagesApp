@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitInstance {
     companion object {
-        val BASE_URL: String = "https://api-generator.retool.com"
+        val BASE_URL: String = "https://api.unsplash.com"
         val interceptor = HttpLoggingInterceptor().apply {
             this.level = HttpLoggingInterceptor.Level.BODY
         }
@@ -26,5 +26,3 @@ class RetrofitInstance {
 
     }
 }
-
-//https://api-generator.retool.com/FGqyBQ/data
