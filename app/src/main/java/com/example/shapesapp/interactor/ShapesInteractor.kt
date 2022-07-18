@@ -2,12 +2,10 @@ package com.example.shapesapp.interactor
 
 import android.content.Context
 import android.util.Log
-import androidx.appcompat.app.AlertDialog
 import com.example.shapesapp.models.Shape
 import com.example.shapesapp.utils.Constants
 import com.example.shapesapp.views.CustomView
 import java.util.*
-import kotlin.collections.ArrayList
 
 class ShapesInteractor private constructor() {
     private var mContext: Context? = null
@@ -15,78 +13,6 @@ class ShapesInteractor private constructor() {
     var maxX = 0
     var maxY = 0
     private var actionSequence = 0
-    private fun askForDeleteShape(
-        oldShape: Shape,
-        index: Int) {
-        val builder = AlertDialog.Builder(
-            mContext!!
-        )
-        builder.setMessage("Are you sure you want to delete ?")
-            .setTitle("Delete Shape")
-        builder.setPositiveButton("ok") { dialog, id -> deleteShape(oldShape, index) }
-        builder.setNegativeButton("cancel") { dialog, id -> }
-        val dialog = builder.create()
-        dialog.show()
-    }
-
-    private fun deleteShape(oldShape: Shape, i: Int) {
-        oldShape.setVisibility(false)
-        oldShape.actionNumber = actionSequence++
-        historyList[i] = oldShape
-        Log.d(LOG_TAG, "askForDeleteShape =  " + oldShape.type)
-        canvas!!.historyList = historyList
-        canvas!!.invalidate()
-    }
-
-    fun changeShapeOnTouch(x: Float, y: Float, changeStatus: Int) {
-        val touchX = Math.round(x)
-        val touchY = Math.round(y)
-        var oldX: Int
-        var oldY: Int
-        val list = historyList
-        for (i in list.indices.reversed()) {
-            val oldShape = list[i]
-            if (oldShape.isVisible) {
-                oldX = oldShape.getxCordinate()
-                oldY = oldShape.getyCordinate()
-                if (Constants.RADIUS >= calculateDistanceBetweenPoints(
-                        oldX.toDouble(),
-                        oldY.toDouble(),
-                        touchX.toDouble(),
-                        touchY.toDouble()
-                    )
-                ) {
-                    if (changeStatus == Constants.ACTION_TRANSFORM)
-                        addTransformShape(oldShape, i, oldX, oldY)
-                    else if (changeStatus == Constants.ACTION_DELETE)
-                        askForDeleteShape(oldShape, i)
-                    break
-                }
-            }
-        }
-    }
-
-    private fun addTransformShape(oldShape: Shape, index: Int, newX: Int, newY: Int) {
-        Log.d(LOG_TAG, " oldShape =  " + oldShape.type)
-        oldShape.setVisibility(false)
-        historyList[index] = oldShape
-        Log.d(LOG_TAG, " HIDE oldShape =  " + oldShape.type)
-        val newShapeType = (oldShape.type!!.value + 1) % Constants.TOTAL_SHAPES
-        val newshapeType = Shape.Type.values()[newShapeType]
-        Log.d(LOG_TAG, " newshape =  $newshapeType")
-        val newShape = createShape(newshapeType, newX, newY)
-        newShape.lastTranformationIndex = index
-        upDateCanvas(newShape)
-    }
-
-    fun calculateDistanceBetweenPoints(
-        x1: Double,
-        y1: Double,
-        x2: Double,
-        y2: Double
-    ): Double {
-        return Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1))
-    }
 
     private fun generateRandomXAndY(): IntArray {
         var x: Int

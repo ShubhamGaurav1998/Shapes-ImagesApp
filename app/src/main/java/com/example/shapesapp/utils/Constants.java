@@ -6,6 +6,7 @@ public class Constants {
 
     public static final int RADIUS = 70;
     public static final int ACTION_CREATE = -1;
+    public static final int SPAN_COUNT_FOR_GRIDVIEW = 3;
 
 }
 

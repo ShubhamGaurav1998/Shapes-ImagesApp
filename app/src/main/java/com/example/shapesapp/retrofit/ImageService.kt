@@ -1,8 +1,7 @@
-package retrofit
+package com.example.shapesapp.retrofit
 
 import com.example.shapesapp.models.ImageApiResponse
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

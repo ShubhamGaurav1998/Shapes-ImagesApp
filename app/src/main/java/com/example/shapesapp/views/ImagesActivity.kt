@@ -1,17 +1,18 @@
 package com.example.shapesapp.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.shapesapp.R
+import com.example.shapesapp.adapter.ImagesAdapter
 import com.example.shapesapp.databinding.ActivityImagesBinding
 import com.example.shapesapp.models.ImageApiResponseItem
-import com.example.shapesapp.adapter.ImagesAdapter
+import com.example.shapesapp.utils.Constants
 import com.example.shapesapp.viewmodels.ImageViewModel
 import com.example.shapesapp.viewmodels.ImageViewModelFactory
 
@@ -25,7 +26,7 @@ class ImagesActivity : AppCompatActivity() {
         if (supportActionBar != null) {
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
-        binding.recyclerMain.layoutManager = GridLayoutManager(this, 3)
+        binding.recyclerMain.layoutManager = GridLayoutManager(this, Constants.SPAN_COUNT_FOR_GRIDVIEW)
         val adapter = ImagesAdapter(this)
         binding.recyclerMain.adapter = adapter
 

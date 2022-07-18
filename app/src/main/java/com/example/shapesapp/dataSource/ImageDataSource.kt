@@ -4,11 +4,10 @@ import android.content.Context
 import androidx.paging.PageKeyedDataSource
 import com.example.shapesapp.models.ImageApiResponse
 import com.example.shapesapp.models.ImageApiResponseItem
+import com.example.shapesapp.retrofit.ImageService
+import com.example.shapesapp.retrofit.RetrofitInstance
 import com.example.shapesapp.utils.Constants
 import com.example.shapesapp.utils.Utility.isInternetAvailable
-import retrofit.ImageService
-import retrofit.RetrofitInstance
-
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

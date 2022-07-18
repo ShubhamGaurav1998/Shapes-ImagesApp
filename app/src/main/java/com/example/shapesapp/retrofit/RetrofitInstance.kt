@@ -1,4 +1,4 @@
-package retrofit
+package com.example.shapesapp.retrofit
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
