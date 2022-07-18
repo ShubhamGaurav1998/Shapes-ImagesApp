@@ -30,9 +30,6 @@ class Shape() : Parcelable {
         this.width = width
     }
 
-    /*
-    Define all types of shapes
-     */
     enum class Type private constructor(val value: Int) {
         CIRCLE(0), SQUARE(1)
     }

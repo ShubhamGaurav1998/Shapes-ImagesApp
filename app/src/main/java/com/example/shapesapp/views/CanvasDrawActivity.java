@@ -22,15 +22,15 @@ public class CanvasDrawActivity extends AppCompatActivity {
     private static final String TAG = CanvasDrawActivity.class.getSimpleName();
     private CustomView canvas = null;
     CanvasPresenter canvasPresenter;
-    private int maxY = 800; // average screen height
-    private int maxX = 600; //average screen height
+    private int maxY = 800;
+    private int maxX = 600;
     private ActivityCanvasDrawBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_canvas_draw);
-        this.canvas = (CustomView) this.findViewById(R.id.canvasDrawView);
+        this.canvas = binding.canvasDrawView;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         canvasPresenter = new CanvasPresenter(canvas, this);

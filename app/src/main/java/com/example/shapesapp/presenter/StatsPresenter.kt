@@ -6,5 +6,5 @@ import java.io.Serializable
 class StatsPresenter {
 
     val countByGroup: Serializable
-        get() = ShapesInteractor.getInstance().countByGroup
+        get() = ShapesInteractor.instance.countByGroup
 }

@@ -1,74 +1,52 @@
-package com.example.shapesapp.views;
+package com.example.shapesapp.views
 
-import android.content.Context;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.content.Context
+import com.example.shapesapp.views.StatsActivity
+import androidx.recyclerview.widget.RecyclerView
+import android.widget.TextView
+import com.example.shapesapp.R
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.view.LayoutInflater
+import android.view.View
+import com.example.shapesapp.models.Shape
+import java.util.HashMap
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+class StatsAdapter(myDataset: HashMap<Shape.Type, Int>?, context: StatsActivity) :
+    RecyclerView.Adapter<StatsAdapter.ViewHolder>() {
+    private var mDataSet: HashMap<Shape.Type, Int>?
+    private val mContext: Context
 
-import com.example.shapesapp.R;
-import com.example.shapesapp.models.Shape;
+    inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+        var mTextView: TextView
 
-import java.util.HashMap;
-
-public class StatsAdapter extends RecyclerView.Adapter<StatsAdapter.ViewHolder> {
-
-    private HashMap<Shape.Type, Integer> mDataSet;
-
-    private Context mContext;
-    private OnItemClicked onClick;
-
-    public StatsAdapter(HashMap<Shape.Type, Integer> myDataset, StatsActivity context) {
-        this.mContext = context;
-        this.mDataSet = myDataset;
-        this.onClick = onClick;
-    }
-
-    public interface OnItemClicked {
-        void onItemClick(int position);
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextView;
-
-        public ViewHolder(View v) {
-            super(v);
-            mTextView = (TextView) v.findViewById(R.id.textViewStats);
+        init {
+            mTextView = v.findViewById<View>(R.id.textViewStats) as TextView
         }
     }
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        LinearLayout v = (LinearLayout) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_stats_content, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+    override fun onCreateViewHolder(parent: ViewGroup, i: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_stats_content, parent, false) as LinearLayout
+        return ViewHolder(view)
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull final StatsAdapter.ViewHolder holder,  int position) {
-
-
-        Shape.Type type = (Shape.Type) mDataSet.keySet().toArray()[position];
-        String stats = " Shape : " + type + "  Count : " + mDataSet.get(type);
-        holder.mTextView.setText(stats);
-        Log.d("canvas1234", " stats = " + stats + " pos= " + (position - 1));
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val type = mDataSet!!.keys.toTypedArray()[position]
+        val stats = " Shape : " + type + "  Count : " + mDataSet!![type]
+        holder.mTextView.text = stats
     }
 
-    @Override
-    public int getItemCount() {
-        if (mDataSet == null)
-            return 0;
-        return mDataSet.size();
+    override fun getItemCount(): Int {
+        return if (mDataSet == null) 0 else mDataSet!!.size
     }
 
-    public void setmDataSet(HashMap<Shape.Type, Integer> mDataSet) {
-        this.mDataSet = mDataSet;
+    fun setmDataSet(mDataSet: HashMap<Shape.Type, Int>?) {
+        this.mDataSet = mDataSet
+    }
+
+    init {
+        mContext = context
+        mDataSet = myDataset
     }
 }
