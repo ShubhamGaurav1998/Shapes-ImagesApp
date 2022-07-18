@@ -56,8 +56,8 @@ class ShapesInteractor private constructor() {
                 }
             }
             historyList.removeLast()
-            canvas!!.historyList = historyList
-            canvas!!.invalidate()
+            canvas?.historyList = historyList
+            canvas?.invalidate()
         }
     }
 
@@ -65,8 +65,8 @@ class ShapesInteractor private constructor() {
         Log.d(LOG_TAG, " upDateCanvas " + shape.type + " actiontype = " + actionSequence)
         shape.actionNumber = actionSequence++
         historyList.add(shape)
-        canvas!!.historyList = historyList
-        canvas!!.invalidate()
+        canvas?.historyList = historyList
+        canvas?.invalidate()
     }
 
     private var historyList = ArrayList<Shape>()

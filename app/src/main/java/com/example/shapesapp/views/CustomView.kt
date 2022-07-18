@@ -17,12 +17,12 @@ class CustomView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
     private var drawPaint: Paint? = null
     private fun setupPaint() {
         drawPaint = Paint()
-        drawPaint!!.color = Color.BLUE
-        drawPaint!!.isAntiAlias = true
-        drawPaint!!.strokeWidth = 5f
-        drawPaint!!.style = Paint.Style.FILL_AND_STROKE
-        drawPaint!!.strokeJoin = Paint.Join.ROUND
-        drawPaint!!.strokeCap = Paint.Cap.ROUND
+        drawPaint?.color = Color.BLUE
+        drawPaint?.isAntiAlias = true
+        drawPaint?.strokeWidth = 5f
+        drawPaint?.style = Paint.Style.FILL_AND_STROKE
+        drawPaint?.strokeJoin = Paint.Join.ROUND
+        drawPaint?.strokeCap = Paint.Cap.ROUND
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -32,7 +32,7 @@ class CustomView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
             if (shape.isVisible) {
                 when (shape.type) {
                     Shape.Type.CIRCLE -> {
-                        drawPaint!!.color = Color.BLUE
+                        drawPaint?.color = Color.BLUE
                         canvas.drawCircle(
                             shape.getxCordinate().toFloat(),
                             shape.getyCordinate().toFloat(),
@@ -49,14 +49,14 @@ class CustomView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
 
     var squareSideHalf = 1 / Math.sqrt(2.0)
     fun drawRectangle(x: Int, y: Int) {
-        drawPaint!!.color = Color.RED
+        drawPaint?.color = Color.RED
         val rectangle = Rect(
             (x - squareSideHalf * RADIUS).toInt(),
             (y - squareSideHalf * RADIUS).toInt(),
             (x + squareSideHalf * RADIUS).toInt(),
             (y + squareSideHalf * RADIUS).toInt()
         )
-        canvas!!.drawRect(rectangle, drawPaint!!)
+        canvas?.drawRect(rectangle, drawPaint!!)
     }
 
 

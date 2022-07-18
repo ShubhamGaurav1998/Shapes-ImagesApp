@@ -34,14 +34,14 @@ class StatsActivity : AppCompatActivity() {
     }
 
     private fun setupStatsListView() {
-        mRecyclerView!!.setHasFixedSize(true)
+        mRecyclerView?.setHasFixedSize(true)
         mLayoutManager = LinearLayoutManager(this)
-        mRecyclerView!!.layoutManager = mLayoutManager
-        myDataset = statsPresenter!!.countByGroup as HashMap<Shape.Type, Int>
-        statsEmptyView!!.visibility = View.GONE
+        mRecyclerView?.layoutManager = mLayoutManager
+        myDataset = statsPresenter?.countByGroup as HashMap<Shape.Type, Int>
+        statsEmptyView?.visibility = View.GONE
         mAdapter = StatsAdapter(myDataset)
-        mRecyclerView!!.adapter = mAdapter
-        mAdapter!!.registerAdapterDataObserver(
+        mRecyclerView?.adapter = mAdapter
+        mAdapter?.registerAdapterDataObserver(
             RecyclerViewEmptyObserver(
                 mRecyclerView!!,
                 statsEmptyView

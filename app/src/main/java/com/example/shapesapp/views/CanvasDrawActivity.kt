@@ -1,18 +1,18 @@
 package com.example.shapesapp.views
 
-import androidx.appcompat.app.AppCompatActivity
-import com.example.shapesapp.presenter.CanvasPresenter
-import android.os.Bundle
-import androidx.databinding.DataBindingUtil
-import com.example.shapesapp.R
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.example.shapesapp.R
 import com.example.shapesapp.databinding.ActivityCanvasDrawBinding
 import com.example.shapesapp.models.Shape
+import com.example.shapesapp.presenter.CanvasPresenter
 import com.example.shapesapp.utils.Constants
 
 class CanvasDrawActivity : AppCompatActivity() {
@@ -20,7 +20,7 @@ class CanvasDrawActivity : AppCompatActivity() {
     var canvasPresenter: CanvasPresenter? = null
     private var maxY = 800
     private var maxX = 600
-    private var binding: ActivityCanvasDrawBinding? = null
+    private lateinit var binding: ActivityCanvasDrawBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_canvas_draw)
@@ -32,9 +32,9 @@ class CanvasDrawActivity : AppCompatActivity() {
     }
 
     private fun setupActionButtons() {
-        binding!!.btnCircle.setOnClickListener { canvasPresenter!!.addShapeRandom(Shape.Type.CIRCLE) }
-        binding!!.btnSquare.setOnClickListener { canvasPresenter!!.addShapeRandom(Shape.Type.SQUARE) }
-        binding!!.btnUndo.setOnClickListener { canvasPresenter!!.undo() }
+        binding.btnCircle.setOnClickListener { canvasPresenter?.addShapeRandom(Shape.Type.CIRCLE) }
+        binding.btnSquare.setOnClickListener { canvasPresenter?.addShapeRandom(Shape.Type.SQUARE) }
+        binding.btnUndo.setOnClickListener { canvasPresenter?.undo() }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -68,9 +68,9 @@ class CanvasDrawActivity : AppCompatActivity() {
                         canvas!!.viewTreeObserver.removeOnGlobalLayoutListener(this)
                         maxY = canvas!!.height
                         maxX = canvas!!.width
-                        canvasPresenter!!.setMaxX(maxX - Constants.RADIUS)
+                        canvasPresenter?.setMaxX(maxX - Constants.RADIUS)
                         val bottomButtonHeight = 100
-                        canvasPresenter!!.setMaxY(maxY - Constants.RADIUS - bottomButtonHeight)
+                        canvasPresenter?.setMaxY(maxY - Constants.RADIUS - bottomButtonHeight)
                         removeOnGlobalLayoutListener(canvas, this)
                         Log.d(TAG, " Screen max x= $maxX maxy = $maxY")
                     }
@@ -81,7 +81,7 @@ class CanvasDrawActivity : AppCompatActivity() {
     companion object {
         private val TAG = CanvasDrawActivity::class.java.simpleName
         fun removeOnGlobalLayoutListener(v: View?, listener: OnGlobalLayoutListener?) {
-            v!!.viewTreeObserver.removeOnGlobalLayoutListener(listener)
+            v?.viewTreeObserver?.removeOnGlobalLayoutListener(listener)
         }
     }
 }
