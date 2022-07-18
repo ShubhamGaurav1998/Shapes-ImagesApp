@@ -39,7 +39,7 @@ class StatsActivity : AppCompatActivity() {
         mRecyclerView!!.layoutManager = mLayoutManager
         myDataset = statsPresenter!!.countByGroup as HashMap<Shape.Type, Int>
         statsEmptyView!!.visibility = View.GONE
-        mAdapter = StatsAdapter(myDataset, this)
+        mAdapter = StatsAdapter(myDataset)
         mRecyclerView!!.adapter = mAdapter
         mAdapter!!.registerAdapterDataObserver(
             RecyclerViewEmptyObserver(

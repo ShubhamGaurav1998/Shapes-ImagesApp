@@ -17,10 +17,7 @@ class ShapesInteractor private constructor() {
     private var actionSequence = 0
     private fun askForDeleteShape(
         oldShape: Shape,
-        index: Int,
-        initialTouchX: Float,
-        initialTouchY: Float
-    ) {
+        index: Int) {
         val builder = AlertDialog.Builder(
             mContext!!
         )
@@ -47,7 +44,6 @@ class ShapesInteractor private constructor() {
         var oldX: Int
         var oldY: Int
         val list = historyList
-        val newShape: Shape? = null
         for (i in list.indices.reversed()) {
             val oldShape = list[i]
             if (oldShape.isVisible) {
@@ -60,17 +56,10 @@ class ShapesInteractor private constructor() {
                         touchY.toDouble()
                     )
                 ) {
-                    if (changeStatus == Constants.ACTION_TRANSFORM) addTransformShape(
-                        oldShape,
-                        i,
-                        oldX,
-                        oldY
-                    ) else if (changeStatus == Constants.ACTION_DELETE) askForDeleteShape(
-                        oldShape,
-                        i,
-                        oldX.toFloat(),
-                        oldY.toFloat()
-                    )
+                    if (changeStatus == Constants.ACTION_TRANSFORM)
+                        addTransformShape(oldShape, i, oldX, oldY)
+                    else if (changeStatus == Constants.ACTION_DELETE)
+                        askForDeleteShape(oldShape, i)
                     break
                 }
             }
@@ -197,7 +186,7 @@ class ShapesInteractor private constructor() {
 
     companion object {
         val instance = ShapesInteractor()
-        private const val LOG_TAG = ""
+        private const val LOG_TAG = "Shubham"
         private val historyList = ArrayList<Shape>()
     }
 }

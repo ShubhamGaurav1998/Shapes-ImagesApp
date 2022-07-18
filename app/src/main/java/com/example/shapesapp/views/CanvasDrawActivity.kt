@@ -60,7 +60,7 @@ class CanvasDrawActivity : AppCompatActivity() {
     }
 
     private val canvasWidthAndHeight: Unit
-        private get() {
+        get() {
             val viewTreeObserver = canvas!!.viewTreeObserver
             if (viewTreeObserver.isAlive) {
                 viewTreeObserver.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
