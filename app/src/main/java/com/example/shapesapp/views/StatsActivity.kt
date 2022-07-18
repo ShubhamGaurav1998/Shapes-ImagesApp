@@ -1,70 +1,59 @@
-package com.example.shapesapp.views;
+package com.example.shapesapp.views
 
-import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import android.widget.TextView
+import com.example.shapesapp.presenter.StatsPresenter
+import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
+import androidx.databinding.DataBindingUtil
+import com.example.shapesapp.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.shapesapp.adapter.RecyclerViewEmptyObserver
+import com.example.shapesapp.databinding.ActivityStatsBinding
+import com.example.shapesapp.models.Shape
+import java.util.HashMap
 
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.shapesapp.R;
-import com.example.shapesapp.adapter.RecyclerViewEmptyObserver;
-import com.example.shapesapp.databinding.ActivityStatsBinding;
-import com.example.shapesapp.models.Shape;
-import com.example.shapesapp.presenter.StatsPresenter;
-
-import java.util.HashMap;
-
-
-public class StatsActivity extends AppCompatActivity {
-
-    private RecyclerView mRecyclerView;
-    private StatsAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private TextView statsEmptyView;
-    StatsPresenter statsPresenter;
-    private HashMap<Shape.Type, Integer> myDataset;
-    private ActivityStatsBinding binding;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_stats);
-
-        mRecyclerView = (RecyclerView) findViewById(R.id.stats_recycler_view);
-        statsEmptyView = (TextView) findViewById(R.id.emptyView);
-        statsPresenter = new StatsPresenter();
-        setupStatsListView();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+class StatsActivity : AppCompatActivity() {
+    private var mRecyclerView: RecyclerView? = null
+    private var mAdapter: StatsAdapter? = null
+    private var mLayoutManager: RecyclerView.LayoutManager? = null
+    private var statsEmptyView: TextView? = null
+    var statsPresenter: StatsPresenter? = null
+    private var myDataset: HashMap<Shape.Type, Int>? = null
+    private var binding: ActivityStatsBinding? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_stats)
+        mRecyclerView = findViewById<View>(R.id.stats_recycler_view) as RecyclerView
+        statsEmptyView = findViewById<View>(R.id.emptyView) as TextView
+        statsPresenter = StatsPresenter()
+        setupStatsListView()
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
-    private void setupStatsListView() {
-
-        mRecyclerView.setHasFixedSize(true);
-
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        myDataset = (HashMap<Shape.Type, Integer>) statsPresenter.getCountByGroup();
-        statsEmptyView.setVisibility(View.GONE);
-        mAdapter = new StatsAdapter(myDataset, this);
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.registerAdapterDataObserver(new RecyclerViewEmptyObserver(mRecyclerView, statsEmptyView));
+    private fun setupStatsListView() {
+        mRecyclerView!!.setHasFixedSize(true)
+        mLayoutManager = LinearLayoutManager(this)
+        mRecyclerView!!.layoutManager = mLayoutManager
+        myDataset = statsPresenter!!.countByGroup as HashMap<Shape.Type, Int>
+        statsEmptyView!!.visibility = View.GONE
+        mAdapter = StatsAdapter(myDataset, this)
+        mRecyclerView!!.adapter = mAdapter
+        mAdapter!!.registerAdapterDataObserver(
+            RecyclerViewEmptyObserver(
+                mRecyclerView!!,
+                statsEmptyView
+            )
+        )
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
         }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item)
     }
 }

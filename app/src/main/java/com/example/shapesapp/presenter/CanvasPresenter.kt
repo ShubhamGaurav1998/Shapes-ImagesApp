@@ -15,17 +15,17 @@ class CanvasPresenter(private val canvas: CustomView, private val mContext: Cont
     private val onTouchListener = object : CanvasTouch {
         override fun onClickEvent(event: MotionEvent) {
             Log.d(LOG_TAG, " onClickEvent done ")
-            ShapesInteractor.getInstance().changeShapeOnTouch(event.x, event.y, Constants.ACTION_TRANSFORM)
+            ShapesInteractor.instance.changeShapeOnTouch(event.x, event.y, Constants.ACTION_TRANSFORM)
         }
 
         override fun onLongPressEvent(initialTouchX: Float, initialTouchY: Float) {
             Log.d(LOG_TAG, " onLongPressEvent done ")
-            ShapesInteractor.getInstance().changeShapeOnTouch(initialTouchX, initialTouchY, Constants.ACTION_DELETE)
+            ShapesInteractor.instance.changeShapeOnTouch(initialTouchX, initialTouchY, Constants.ACTION_DELETE)
         }
     }
 
     val countByGroup: Serializable
-        get() = ShapesInteractor.getInstance().countByGroup
+        get() = ShapesInteractor.instance.countByGroup
 
     init {
         canvas.canvasTouch = onTouchListener
@@ -33,25 +33,25 @@ class CanvasPresenter(private val canvas: CustomView, private val mContext: Cont
     }
 
     private fun initializeUIComponents(canvas: CustomView, mContext: Context) {
-        ShapesInteractor.getInstance().canvas = canvas
-        ShapesInteractor.getInstance().setContext(mContext)
+        ShapesInteractor.instance.canvas = canvas
+        ShapesInteractor.instance.setContext(mContext)
     }
 
 
     fun setMaxX(maxX: Int) {
-        ShapesInteractor.getInstance().maxX = maxX
+        ShapesInteractor.instance.maxX = maxX
     }
 
     fun setMaxY(maxY: Int) {
-        ShapesInteractor.getInstance().maxY = maxY
+        ShapesInteractor.instance.maxY = maxY
     }
 
     fun addShapeRandom(type: Shape.Type) {
-        ShapesInteractor.getInstance().addShapeRandom(type)
+        ShapesInteractor.instance.addShapeRandom(type)
     }
 
     fun undo() {
-        ShapesInteractor.getInstance().undo()
+        ShapesInteractor.instance.undo()
     }
 
     companion object {
