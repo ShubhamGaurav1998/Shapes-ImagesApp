@@ -1,19 +1,19 @@
 package com.example.shapesapp.views
 
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
-import android.widget.TextView
-import com.example.shapesapp.presenter.StatsPresenter
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.shapesapp.R
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.shapesapp.R
 import com.example.shapesapp.adapter.RecyclerViewEmptyObserver
+import com.example.shapesapp.adapter.StatsAdapter
 import com.example.shapesapp.databinding.ActivityStatsBinding
 import com.example.shapesapp.models.Shape
-import java.util.HashMap
+import com.example.shapesapp.presenter.StatsPresenter
 
 class StatsActivity : AppCompatActivity() {
     private var mRecyclerView: RecyclerView? = null

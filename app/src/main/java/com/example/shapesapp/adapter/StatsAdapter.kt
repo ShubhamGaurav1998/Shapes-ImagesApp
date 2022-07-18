@@ -1,15 +1,14 @@
-package com.example.shapesapp.views
+package com.example.shapesapp.adapter
 
 import android.util.Log
-import androidx.recyclerview.widget.RecyclerView
-import android.widget.TextView
-import com.example.shapesapp.R
-import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.shapesapp.R
 import com.example.shapesapp.models.Shape
-import java.util.HashMap
 
 class StatsAdapter(private val mDataSet: HashMap<Shape.Type, Int>?) :
     RecyclerView.Adapter<StatsAdapter.ViewHolder>() {
