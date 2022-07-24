@@ -76,14 +76,8 @@ class ShapesInteractor private constructor() {
         this.historyList = historyList
     }
 
-    fun deleteAllByShape(shapeType: Shape.Type) {
-        val itr = historyList.iterator()
-        while (itr.hasNext()) {
-            val shape = itr.next()
-            if (shape.type === shapeType) {
-                itr.remove()
-            }
-        }
+    fun deleteAllByShape() {
+        historyList.clear()
     }
 
     val countByGroup: HashMap<Shape.Type?, Int>

@@ -45,7 +45,7 @@ class CanvasDrawActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         if (item.itemId == android.R.id.home) {
-            finish()
+            onBackPressed()
             return true
         } else if (id == R.id.action_stats) {
             startStatsView()
@@ -57,6 +57,11 @@ class CanvasDrawActivity : AppCompatActivity() {
     private fun startStatsView() {
         val intent = Intent(this, StatsActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        canvasPresenter?.deleteAllShapes()
     }
 
     private val canvasWidthAndHeight: Unit

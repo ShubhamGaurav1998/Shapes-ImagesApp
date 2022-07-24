@@ -38,5 +38,9 @@ class CanvasPresenter(private val canvas: CustomView, private val mContext: Cont
         ShapesInteractor.instance.undo()
     }
 
+    fun deleteAllShapes() {
+        ShapesInteractor.instance.deleteAllByShape()
+    }
+
 
 }
