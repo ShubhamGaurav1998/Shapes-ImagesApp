@@ -70,7 +70,7 @@ class ShapesInteractor private constructor() {
     }
 
     private var historyList = ArrayList<Shape>()
-        private get() = Companion.historyList
+        get() = Companion.historyList
 
     fun setHistoryList(historyList: ArrayList<Shape>) {
         this.historyList = historyList

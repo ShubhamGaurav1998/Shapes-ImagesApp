@@ -22,12 +22,12 @@ class StatsActivity : AppCompatActivity() {
     private var statsEmptyView: TextView? = null
     var statsPresenter: StatsPresenter? = null
     private var myDataset: HashMap<Shape.Type, Int>? = null
-    private var binding: ActivityStatsBinding? = null
+    private lateinit var binding: ActivityStatsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_stats)
-        mRecyclerView = findViewById<View>(R.id.stats_recycler_view) as RecyclerView
-        statsEmptyView = findViewById<View>(R.id.emptyView) as TextView
+        mRecyclerView = binding.statsRecyclerView
+        statsEmptyView = binding.emptyView
         statsPresenter = StatsPresenter()
         setupStatsListView()
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)

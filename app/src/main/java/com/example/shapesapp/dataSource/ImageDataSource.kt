@@ -13,7 +13,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ImageDataSource(private val context: Context) : PageKeyedDataSource<Int, ImageApiResponseItem>() {
-
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, ImageApiResponseItem>) {
         if (context.isInternetAvailable()) {
                 getImages(callback) }
@@ -35,7 +34,7 @@ class ImageDataSource(private val context: Context) : PageKeyedDataSource<Int, I
     private fun getImages(callback: LoadInitialCallback<Int, ImageApiResponseItem>) {
 
         RetrofitInstance.getRetrofitInstance().create(ImageService::class.java)
-            .getResults(Constants.IMAGES_API_PATH, 1, 30, Constants.CLIENT_ID).enqueue(object : Callback<ImageApiResponse> {
+            .getResults(Constants.IMAGES_API_PATH, 1, Constants.PAGE_SIZE, Constants.CLIENT_ID).enqueue(object : Callback<ImageApiResponse> {
                 override fun onFailure(call: Call<ImageApiResponse>, t: Throwable) {
                 }
 
@@ -51,7 +50,7 @@ class ImageDataSource(private val context: Context) : PageKeyedDataSource<Int, I
     private fun getMoreImages(pageNo: Int, previousOrNextPageNo: Int, callback: LoadCallback<Int, ImageApiResponseItem>) {
 
         RetrofitInstance.getRetrofitInstance().create(ImageService::class.java)
-            .getResults(Constants.IMAGES_API_PATH, pageNo, 30, Constants.CLIENT_ID).enqueue(object : Callback<ImageApiResponse>  {
+            .getResults(Constants.IMAGES_API_PATH, pageNo, Constants.PAGE_SIZE, Constants.CLIENT_ID).enqueue(object : Callback<ImageApiResponse>  {
             override fun onFailure(call: Call<ImageApiResponse>, t: Throwable) {
             }
 

@@ -31,8 +31,8 @@ class ImagesActivity : AppCompatActivity() {
         binding.recyclerMain.adapter = adapter
 
 
-        val userViewModel = ViewModelProvider(this, ImageViewModelFactory(this)).get(ImageViewModel::class.java)
-        userViewModel.getData().observe(this, object : Observer<PagedList<ImageApiResponseItem>> {
+        val imagesViewModel = ViewModelProvider(this, ImageViewModelFactory(this)).get(ImageViewModel::class.java)
+        imagesViewModel.getData().observe(this, object : Observer<PagedList<ImageApiResponseItem>> {
             override fun onChanged(t: PagedList<ImageApiResponseItem>?) {
                 adapter.submitList(t)
             }
