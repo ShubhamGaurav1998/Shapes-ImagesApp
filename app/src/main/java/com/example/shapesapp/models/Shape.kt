@@ -2,7 +2,6 @@ package com.example.shapesapp.models
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.example.shapesapp.utils.Constants
 
 
 class Shape() : Parcelable {
@@ -11,17 +10,13 @@ class Shape() : Parcelable {
     private var yCordinate: Int = 0
     var width: Int = 0
     var type: Type? = null
-    var isVisible = true
-        private set
     var actionNumber = 0
-    var lastTranformationIndex = Constants.ACTION_CREATE
 
     constructor(parcel: Parcel) : this() {
         xCordinate = parcel.readInt()
         yCordinate = parcel.readInt()
         width = parcel.readInt()
         actionNumber = parcel.readInt()
-        lastTranformationIndex = parcel.readInt()
     }
 
     constructor(x: Int, y: Int, width: Int) : this() {
@@ -50,16 +45,11 @@ class Shape() : Parcelable {
         this.yCordinate = yCordinate
     }
 
-    fun setVisibility(visibility: Boolean) {
-        this.isVisible = visibility
-    }
-
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(xCordinate)
         parcel.writeInt(yCordinate)
         parcel.writeInt(width)
         parcel.writeInt(actionNumber)
-        parcel.writeInt(lastTranformationIndex)
     }
 
     override fun describeContents(): Int {

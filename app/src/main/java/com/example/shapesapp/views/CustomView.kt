@@ -29,7 +29,6 @@ class CustomView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         super.onDraw(canvas)
         this.canvas = canvas
         for (shape in historyList) {
-            if (shape.isVisible) {
                 when (shape.type) {
                     Shape.Type.CIRCLE -> {
                         drawPaint?.color = Color.BLUE
@@ -42,7 +41,6 @@ class CustomView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
                     }
                     Shape.Type.SQUARE -> drawRectangle(shape.getxCordinate(), shape.getyCordinate())
                 }
-            }
         }
     }
 

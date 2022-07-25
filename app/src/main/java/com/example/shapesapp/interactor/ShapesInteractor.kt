@@ -44,17 +44,6 @@ class ShapesInteractor private constructor() {
     fun undo() {
         if (historyList.size > 0) {
             actionSequence--
-            val toDeleteShape = historyList.last()
-            if (toDeleteShape.lastTranformationIndex != Constants.ACTION_CREATE) {
-                val lastVisibleIndex = toDeleteShape.lastTranformationIndex
-                if (lastVisibleIndex < historyList.size) {
-                    val lastVisibleShape = historyList[lastVisibleIndex]
-                    if (lastVisibleShape != null) {
-                        lastVisibleShape.setVisibility(true)
-                        historyList[lastVisibleIndex] = lastVisibleShape
-                    }
-                }
-            }
             historyList.removeLast()
             canvas?.historyList = historyList
             canvas?.invalidate()
@@ -84,14 +73,12 @@ class ShapesInteractor private constructor() {
         get() {
             val shapeTypeCountMap = HashMap<Shape.Type?, Int>()
             for (shape in historyList) {
-                if (shape.isVisible) {
                     val shapeType = shape.type
                     var existingCnt = 0
                     if (shapeTypeCountMap.containsKey(shape.type)) existingCnt =
                         shapeTypeCountMap[shape.type]!!
                     existingCnt++
                     shapeTypeCountMap[shapeType] = existingCnt
-                }
             }
             return shapeTypeCountMap
         }
