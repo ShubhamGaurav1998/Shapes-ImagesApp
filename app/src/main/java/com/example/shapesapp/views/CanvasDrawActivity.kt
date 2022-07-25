@@ -18,13 +18,13 @@ import com.example.shapesapp.utils.Constants
 class CanvasDrawActivity : AppCompatActivity() {
     private var canvas: CustomView? = null
     var canvasPresenter: CanvasPresenter? = null
-    private var maxY = 800
-    private var maxX = 600
+    private var maxY = 0
+    private var maxX = 0
     private lateinit var binding: ActivityCanvasDrawBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_canvas_draw)
-        canvas = findViewById<View>(R.id.canvasDrawView) as CustomView
+        canvas = binding.canvasDrawView
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         canvasPresenter = CanvasPresenter(canvas!!, this)
         setupActionButtons()
@@ -70,11 +70,11 @@ class CanvasDrawActivity : AppCompatActivity() {
             if (viewTreeObserver.isAlive) {
                 viewTreeObserver.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
                     override fun onGlobalLayout() {
-                        canvas!!.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                        canvas?.viewTreeObserver?.removeOnGlobalLayoutListener(this)
                         maxY = canvas!!.height
                         maxX = canvas!!.width
                         canvasPresenter?.setMaxX(maxX - Constants.RADIUS)
-                        val bottomButtonHeight = 100
+                        val bottomButtonHeight = 200
                         canvasPresenter?.setMaxY(maxY - Constants.RADIUS - bottomButtonHeight)
                         removeOnGlobalLayoutListener(canvas, this)
                         Log.d(TAG, " Screen max x= $maxX maxy = $maxY")

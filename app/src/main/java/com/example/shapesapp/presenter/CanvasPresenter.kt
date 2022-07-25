@@ -4,13 +4,9 @@ import android.content.Context
 import com.example.shapesapp.interactor.ShapesInteractor
 import com.example.shapesapp.models.Shape
 import com.example.shapesapp.views.CustomView
-import java.io.Serializable
 
 
 class CanvasPresenter(private val canvas: CustomView, private val mContext: Context) {
-
-    val countByGroup: Serializable
-        get() = ShapesInteractor.instance.countByGroup
 
     init {
         initializeUIComponents(canvas, mContext)
